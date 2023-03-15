@@ -1,0 +1,152 @@
+The ribbon on Polycarpus measures n in length. He desires to perform the ribbon- cutting in a way that satisfies the following two requirements:
+Each ribbon piece should have a, b, or c
+length after cutting.
+The maximum amount of ribbon pieces should remain after the cutting. 
+Find the amount of ribbon pieces left over after the necessary cutting to aid Polycarpus.
+
+Input
+The length of the original ribbon and the acceptable lengths of the ribbon pieces following the cutting are indicated by the four space-separated integers n. a, b, and c (1 ≤n, a, b, c≤4000) on the first line
+respectively. The digits a, b, and c may match.
+
+Output 
+The greatest number of ribbon pieces that can be printed should be one number. There will always be at least one successful ribbon-cutting.
+
+input
+5 5 3 2
+output
+2
+input
+7 5 5 2
+output
+2
+
+
+
+BRUTE FORCE:
+
+Start with the original ribbon of length 'n'.
+
+Generate all possible combinations of cuts using 'a', 'b', and 'c'. This involves trying different combinations of cutting or not cutting at each possible position along the ribbon.
+
+For each combination, calculate the total number of pieces created after making those cuts.
+
+Keep track of the maximum number of pieces obtained among all combinations.
+
+Once you have considered all possible combinations, the maximum number of pieces found is the answer.
+
+Return the maximum number of pieces as the result.
+
+The brute-force approach essentially explores every possible way of cutting the ribbon and computes the number of pieces for each combination. While this approach will give you the correct answer, it can be extremely slow for larger input values because the number of combinations to consider grows exponentially with the length of the ribbon. Therefore, it's not an efficient solution for this problem, and dynamic programming is a much faster and more practical approach to solve it.
+
+
+Copy code
+#include <iostream>
+using namespace std;
+
+int maxRibbonPieces(int n, int a, int b, int c) {
+    int maxPieces = 0;
+
+    for (int i = 0; i <= n; i++) {
+        for (int j = 0; j <= n; j++) {
+            for (int k = 0; k <= n; k++) {
+                int totalLength = i * a + j * b + k * c;
+                if (totalLength == n) {
+                    int pieces = i + j + k;
+                    maxPieces = max(maxPieces, pieces);
+                }
+            }
+        }
+    }
+
+    return maxPieces;
+}
+
+int main() {
+    int n, a, b, c;
+    cin >> n >> a >> b >> c;
+
+    int result = maxRibbonPieces(n, a, b, c);
+    cout << result << endl;
+
+    return 0;
+}
+This code uses three nested loops to generate all possible combinations of cuts, where 'i', 'j', and 'k' represent the number of cuts of lengths 'a', 'b', and 'c', respectively. It calculates the total length of ribbon pieces created by each combination and checks if it equals 'n'. If so, it updates the maximum number of pieces found. Finally, it returns the maximum number of pieces as the result.
+
+
+
+DP Approach: 
+
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int maxRibbonPieces(int n, int a, int b, int c) {
+    vector<int> dp(n + 1, -1);
+    dp[0] = 0;
+
+    for (int i = 1; i <= n; i++) {
+        if (i >= a && dp[i - a] != -1) {
+            dp[i] = max(dp[i], dp[i - a] + 1);
+        }
+        if (i >= b && dp[i - b] != -1) {
+            dp[i] = max(dp[i], dp[i - b] + 1);
+        }
+        if (i >= c && dp[i - c] != -1) {
+            dp[i] = max(dp[i], dp[i - c] + 1);
+        }
+    }
+
+    return dp[n];
+}
+
+int main() {
+    int n, a, b, c;
+    cin >> n >> a >> b >> c;
+
+    int result = maxRibbonPieces(n, a, b, c);
+    cout << result << endl;
+
+    return 0;
+}
+
+
+1. We include the necessary C++ libraries for input and output (iostream) and for using vectors (vector).
+
+2. The maxRibbonPieces function takes four integers as input: n (the length of the original ribbon), a, b, and c (the acceptable lengths of ribbon pieces after cutting).
+
+3. We create a vector dp to store the dynamic programming values. Each element of dp will represent the maximum number of pieces that can be obtained for a given ribbon length.
+
+4. We initialize all elements of dp to -1, except for dp[0], which is set to 0 because no cuts are needed for a ribbon of length 0.
+
+5. We iterate from 1 to n, considering each possible ribbon length.
+
+6. Inside the loop, we check if cutting a piece of length a, b, or c is possible without exceeding the current ribbon length (i) and if a valid solution exists for the remaining length. If both conditions are met, we update dp[i] to maximize the number of pieces.
+
+7. After the loop finishes, we return the value of dp[n], which represents the maximum number of ribbon pieces that can be obtained with the given lengths.
+
+8. In the main function, we read the input values for n, a, b, and c.
+
+9. We call the maxRibbonPieces function to calculate the result and then print it.
+
+
+
+Basic Logic: 
+
+1. The basic logic of the problem involves finding the maximum number of ribbon pieces that can be obtained by cutting a given ribbon of length 'n' into smaller pieces of lengths 'a', 'b', or 'c'. The problem can be solved using dynamic programming, and here's the basic logic behind it:
+
+2. Create a dynamic programming (DP) array to store the maximum number of ribbon pieces that can be obtained for each possible ribbon length from 0 to 'n'. Initialize the DP array with -1, except for DP[0], which is initialized to 0 because no cuts are needed for a ribbon of length 0.
+
+3. Iterate through each possible ribbon length from 1 to 'n'.
+
+4. For each ribbon length 'i', check if it's possible to cut a piece of length 'a', 'b', or 'c' from the ribbon without exceeding the current length 'i'. Also, check if there's a valid solution for the remaining ribbon length (i - a, i - b, or i - c). If both conditions are met, update the DP value for 'i' to maximize the number of pieces.
+
+5. After the loop finishes, the DP[n] value will represent the maximum number of ribbon pieces that can be obtained for the original ribbon length 'n'.
+
+6. Return the DP[n] value as the final answer.
+
+
+In essence, the algorithm explores all possible ribbon lengths and tries to find the maximum number of pieces that can be obtained by considering the options of cutting pieces of lengths 'a', 'b', or 'c' at each step while ensuring that the current length is valid and the solution for the remaining length is known (from the DP array). The DP array helps in avoiding redundant calculations and efficiently finding the optimal solution
+
+
+

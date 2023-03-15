@@ -1,0 +1,17 @@
+Hello all!!!
+Accenture coding questions asked for me
+1. Checking whether password follows certain rules(given)... rules like character greater than 6 and less than 22, one uppercase, one lowercase, two special characters(had given certain characters), one numeric digit, no two characters appear consecutively.
+If password is right, return 0. Otherwise return number of rules not followed.
+Example: 
+I/p: abcd
+O/p: 4
+
+I/p: Abc@12#
+O/p: 0
+
+
+2. Given a string and a integer k, need to arrange the k characters in increasing and decreasing order(alternatively). The pattern to be followed for the order "abcdefghstuvwxyzijklmnopqr"
+Example:
+I/p: tomcat
+O/p: tocmat
+to is in increasing order... mc is not in decreasing, so interchange

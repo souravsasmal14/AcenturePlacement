@@ -1,0 +1,37 @@
+// 30 August 2023 Coding Problem asked in Accenture ON CAMPUS 
+
+Elections are conducted in a town that has population N. All the people of the town, cast votes in the various candidates in town. The people
+of the town realized that the votes of only for the candidates 18 and above years of age are valid. Find out the winner if the only 18 and 18+ votes were considered, if there is a tie then print -1.
+
+You are given an array  vote which represents the candidate to whom the vote is given by the ith and another array of age which represents the age of that particular voter.
+
+INPUT FORMAT;
+The input consists of three lines.
+1. 1st line will contain one value N, the size of array.
+2. 2nd line will contain N space separated positive integers denoting the array of votes.
+3. 3rd line will contain N- space separated positive integer denoting the array of ages of the voters.
+
+OUTPUT FORMAT:
+Print the number which represents the winner. If the winner can not be decided or there is a tie , print -1;
+
+Constraints : 1<=N<=200
+
+Sample Test Case:
+Input: 10
+       1  1  2  3  4  1  2  2  3  1
+       24 13 35 15 50 16 20 18 25 64
+Output: 2
+
+So the candidate 1 gets 4 votes, candidate 2 gets 3 votes, candidate 3 gets 2 votes, and candidate 4 gets 1 vote. But the 2nd and the 6th vote given to candidate 1 are from age not from age group.    So they are not considered.
+So, the new vote count is candidate 1 gets 2 votes, candidate 2 gets 3 votes, candidate 3 gets 2 votes, and candidate 4 gets 1 vote.
+
+
+
+Input 2: 3
+         1 2 3
+         10 12 15
+
+Output: -1 
+
+
+
