@@ -1,7 +1,0 @@
-Suppose there are n bulbs that are initially switched off. We first turn on all the bulbs. Then, we turn off every second bulb. On the third round, we toggle every third bulb (turning on if it's off or turning off if it's on). Similarly, for the i-th round, we toggle every i bulb. For the n-th round, we only toggle the last bulb. So we have to find how many bulbs are on after n rounds
-
-Input: 3
-Output: 1
-
-Input : 1
-Output: 0

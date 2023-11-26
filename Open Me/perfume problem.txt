@@ -1,3 +1,0 @@
-In a perfume factory, every perfume bottle goes through three processes after each other. First is distillation, then enflurage, and then extraction. The factory has P distillation, Q enflurage, and R extraction untis. Each machine can process only a single product at any time, and it takes T1 time for distillation, T2 time for enflurage, and T3 time for extraction. You have to print the minimum hours required to produce N perfume bottles.
-
-To calculate the minimum hours required to produce N perfume bottles in the given perfume factory with P distillation, Q enflurage, and R extraction units, you need to consider the time it takes for each process and the number of bottles that can be processed simultaneously.
